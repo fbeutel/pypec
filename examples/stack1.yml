@@ -1,0 +1,7 @@
+stack:
+    - Si: 800nm
+    - SiO2: 200nm
+    - Si3N4: 350nm
+    - PMMA: 200nm
+voltage: 100kV
+
