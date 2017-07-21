@@ -2,50 +2,54 @@ from pec_params import PecParams
 
 
 def generate_in_file(pec_params, filename):
-    with open(filename, 'w+') as f:
-        f.write("TITLE  %s\n" % pec_params.title+".in")
-        f.write("       .\n")
-        f.write("GSTART >>>>>>>> Beginning of the geometry definition list.\n")
-        for i in range(pec_params.layer_max_number):
-            z = 0 if i == 0 else z + float(pec_params.layer_thickness[(i - 1)])/10000000
-            f.write("LAYER        %g\t\t+%g\t\t%d\n" % (
-                z, (z + float(pec_params.layer_thickness[i])/10000000), (i + 1)))
+    s = str()
+    s += "TITLE  " + pec_params.title + ".in\n"
+    s += "       .\n"
+    s += "GSTART >>>>>>>> Beginning of the geometry definition list.\n"
+    for i in range(pec_params.layer_max_number):
+        z = 0 if i == 0 else z + float(pec_params.layer_thickness[(i - 1)])/10000000
+        s += "LAYER        %g\t\t+%g\t\t%d\n" % (
+            z, (z + float(pec_params.layer_thickness[i])/10000000), (i + 1))
+        for j in range(pec_params.body_max_number):
+            s += "CENTRE\t\t0\t0\n"
+            r = 0 if j == 0 else r + float(pec_params.ring_width[(j - 1)])/10000000
+            s += "CYLIND\t%d\t%g\t%g\n" % (
+                (i + 1), r, (r + float(pec_params.ring_width[j])/10000000))
+    s += "GEND   <<<<<<<< End of the geometry definition list.\n"
+    s += "       .\n"
+    s += "       >>>>>>>> Source definition.\n"
+    s += "SKPAR  1\n"
+    s += "SENERG %d\n" % (pec_params.acceleration_voltage * 1000)
+    s += "SPOSIT 0 0 0\n"
+    s += "SCONE  0 0 0\n"
+    s += "       .\n"
+    s += "       >>>>>>>> Material data and simulation parameters.\n"
+    for i in range(pec_params.layer_max_number):
+        s += "MFNAME %s.mat\n" % pec_params.stack_material[i]
+        s += "MSIMPA 50.0 50.0 50.0 0.0 0.0 0.0 -1.0\n"
+    s += "       .\n"
+    s += "       >>>>>>>> Dose and charge distributions.\n"
+    for i in range(pec_params.layer_max_number):
+        if pec_params.layer_dose[i] == 1:
             for j in range(pec_params.body_max_number):
-                f.write("CENTRE\t\t0\t0\n")
-                r = 0 if j == 0 else r + float(pec_params.ring_width[(j - 1)])/10000000
-                f.write("CYLIND\t%d\t%g\t%g\n" % (
-                    (i + 1), r, (r + float(pec_params.ring_width[j])/10000000)))
-        f.write("GEND   <<<<<<<< End of the geometry definition list.\n")
-        f.write("       .\n")
-        f.write("       >>>>>>>> Source definition.\n")
-        f.write("SKPAR  1\n")
-        f.write("SENERG %d\n" % (pec_params.acceleration_voltage * 1000))
-        f.write("SPOSIT 0 0 0\n")
-        f.write("SCONE  0 0 0\n")
-        f.write("       .\n")
-        f.write("       >>>>>>>> Material data and simulation parameters.\n")
-        for i in range(pec_params.layer_max_number):
-            f.write("MFNAME %s.mat\n" % pec_params.stack_material[i])
-            f.write("MSIMPA 50.0 50.0 50.0 0.0 0.0 0.0 -1.0\n")
-        f.write("       .\n")
-        f.write("       >>>>>>>> Dose and charge distributions.\n")
-        for i in range(pec_params.layer_max_number):
-            if pec_params.layer_dose[i] == 1:
-                for j in range(pec_params.body_max_number):
-                    f.write("DOSE2D %d %d %d %d\t[Tally 2D dose and charge dists. in body KL,KC]\n" % (
-                        (i + 1), (j + 1), pec_params.slice_number[i], pec_params.bin_number[j]))
-                else:
-                    continue
-        f.write("       .\n")
-        f.write("       >>>>>>>> Job properties\n")
-        f.write("RESUME dump.dmp\n")
-        f.write("DUMPTO dump.dmp\n")
-        f.write("DUMPP  60\n")
-        f.write("       .\n")
-        f.write("NSIMSH %g\n" % pec_params.showers)
-        f.write("TIME   %d\n" % pec_params.time)
-        f.write("       .\n")
-        f.write("END")
+                s += "DOSE2D %d %d %d %d\t[Tally 2D dose and charge dists. in body KL,KC]\n" % (
+                    (i + 1), (j + 1), pec_params.slice_number[i], pec_params.bin_number[j])
+            else:
+                continue
+    s += "       .\n"
+    s += "       >>>>>>>> Job properties\n"
+    s += "RESUME dump.dmp\n"
+    s += "DUMPTO dump.dmp\n"
+    s += "DUMPP  60\n"
+    s += "       .\n"
+    s += "NSIMSH %g\n" % pec_params.showers
+    s += "TIME   %d\n" % pec_params.time
+    s += "       .\n"
+    s += "END"
+
+    with open(filename, 'w+') as f:
+        f.write(s)
+    return s
 
 def generate_stack_file(pec_params, filename):
     with open(filename, 'w+') as s:
