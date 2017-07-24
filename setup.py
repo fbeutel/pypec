@@ -5,7 +5,7 @@ setup(name='pyPEC',
       author='Fabian Beutel',
       author_email='fabian.beutel@uni-muenster.de',
 
-      packages=['pyPEC'],
+      packages=['pypec'],
       scripts=['bin/pypec'],
 
       url='https://zivgitlab.uni-muenster.de/beutelf/pyPEC',
