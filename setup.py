@@ -6,14 +6,15 @@ setup(name='pyPEC',
       author_email='fabian.beutel@uni-muenster.de',
 
       packages=['pyPEC'],
-      scripts=['bin/pypec.py'],
+      scripts=['bin/pypec'],
 
       url='https://zivgitlab.uni-muenster.de/beutelf/pyPEC',
       license='GPL v3',
       description='Simulate material stacks for proximity effect corrections (PEC) using PENELOPE.',
 
       install_requires=[
-          'appdirs>=1.0.0'
+          'appdirs>=1.0.0',
+          'ConfigArgParse>=0.12.0'
       ],
 
       classifiers=[]

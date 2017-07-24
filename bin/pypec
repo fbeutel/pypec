@@ -20,6 +20,5 @@ p.add('layerfile', help='YAML file containing the layer specification')
 
 options = p.parse_args()
 
-print(options.pencyl_path)
-print(options.database_path)
-print(options.layerfile)
+params = read_layer(options.layerfile)
+run_simulation(params, options.database_path, options.pencyl_path)
