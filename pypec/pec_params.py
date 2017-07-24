@@ -26,6 +26,8 @@ class PecParams:
 
         self.relative_z = 0.5   # z in the center of the top layer
         self.target_z = None       # z value in nm
+
+        self.acceleration_voltage = 100
         
     def make_title(self):
         for i in range(len(self.stack_material)):
