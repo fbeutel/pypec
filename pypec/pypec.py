@@ -11,15 +11,6 @@ from pec_params import PecParams
 from pen_extractor import extract_xrz
 
 simulation_directory = "simulation" # path to directory where all stack_directories are located
-database_directory = "/mnt/fabianlaptop1/users/fabian/data/studium/Promotion/Software/pyPEC/database" # path to database directory (contains PENELOPE material (.mat) files)
-pencyl_path = "/mnt/fabianlaptop1/users/fabian/data/studium/Promotion/Software/penelope/silvia/bin/pencyl"
-
-"""if len(sys.argv) < 2:
-    # todo: display usage
-    raise Exception("Please provide input yaml file")
-
-infile = sys.argv[1]"""
-
 
 def read_number(s, unit):
     # todo: read other units
@@ -28,7 +19,7 @@ def read_number(s, unit):
     return int(s[:-len(unit)].strip())
 
 def read_layer(filepath):
-    with open("../examples/stack1.yml") as f:
+    with open(filepath) as f:
         data = yaml.load(f)
         
     params = PecParams()
