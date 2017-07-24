@@ -499,7 +499,7 @@ def extract_xrz(target_z):
         diff = abs(z - target_z)
         if smallest_diff == -1 or diff < smallest_diff:
             smallest_diff = diff
-            selected_z
+            selected_z = z
             
     import shutil
 

@@ -77,4 +77,4 @@ class PecParams:
             for i in range(layer):
                 self.target_z += self.layer_thickness[i]
                 
-            self.target_z += round(self.layer_thickness[i] * layer_z)
+            self.target_z += round(self.layer_thickness[layer] * layer_z)
