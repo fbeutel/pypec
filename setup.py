@@ -14,7 +14,8 @@ setup(name='pyPEC',
 
       install_requires=[
           'appdirs>=1.0.0',
-          'ConfigArgParse>=0.12.0'
+          'ConfigArgParse>=0.12.0',
+          'pyyaml'
       ],
 
       classifiers=[]

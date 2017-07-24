@@ -12,9 +12,9 @@ dirs = AppDirs(appname)
 
 p = configargparse.ArgParser(default_config_files=[os.path.join(dirs.user_config_dir, "config.ini")])
 p.add('-c', '--config', required=False, is_config_file=True, help='config file path')
-p.add('--pencyl_path', required=True, help='Path to the pencyl binary',
+p.add('--pencyl_path', help='Path to the pencyl binary',
       default=os.path.join(dirs.user_data_dir, "pencyl"))
-p.add('--database_path', required=True, help='Path to the database directory', 
+p.add('--database_path', help='Path to the database directory', 
       default=os.path.join(dirs.user_data_dir, "database"))
 p.add('layerfile', help='YAML file containing the layer specification')
 
