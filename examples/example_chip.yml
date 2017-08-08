@@ -1,0 +1,5 @@
+stack:
+    - PMMA: 200nm
+    - Si3N4: 350nm
+    - SiO2: 200nm
+    - Si: 800nm

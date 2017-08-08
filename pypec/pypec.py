@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # pyPEC 0.x by Fabian Beutel (fabian.beutel@uni-muenster.de)
-# Based on scripts by Silvia Diewald (silvia.diewald@kit.edu) 
+# Based on scripts by Silvia Diewald (silvia.diewald@kit.edu)
 
 import yaml
 import sys

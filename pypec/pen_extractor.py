@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# v0.4 by SD (contact: silvia.diewald@kit.edu)
+# pyPEC 0.x by Fabian Beutel (fabian.beutel@uni-muenster.de)
+# Based on scripts by Silvia Diewald (silvia.diewald@kit.edu)
 
 # compatibility
 

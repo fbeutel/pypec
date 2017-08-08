@@ -1,5 +1,7 @@
-from pec_params import PecParams
+# pyPEC 0.x by Fabian Beutel (fabian.beutel@uni-muenster.de)
+# Based on scripts by Silvia Diewald (silvia.diewald@kit.edu)
 
+from pec_params import PecParams
 
 def generate_in_file(pec_params, filename):
     s = str()

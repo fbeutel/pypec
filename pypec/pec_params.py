@@ -1,3 +1,6 @@
+# pyPEC 0.x by Fabian Beutel (fabian.beutel@uni-muenster.de)
+# Based on scripts by Silvia Diewald (silvia.diewald@kit.edu)
+
 class PecParams:
     def __init__(self):
         self.layer_max_number = 1 # number of layers in stack
