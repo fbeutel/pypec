@@ -13,7 +13,7 @@ Installation
 
 The software can be installed like any other python package. For example, to directly install it from the repository:
 
-  pip install git+https://zivgitlab.uni-muenster.de/beutelf/pyPEC.git
+  pip install git+https://github.com/fbeutel/pypec.git
 
   
 Configuration
